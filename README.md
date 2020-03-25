@@ -61,6 +61,9 @@
 |sys.net.tcp.ip4.conreset|不支持|支持|
 |sys.ps.entity.total|支持|不支持|
 
+#### log
+暂不支持，Todo
+
 #### port 
 无差异
 
