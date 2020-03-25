@@ -54,11 +54,11 @@
 |metric|linux|windows|
 |--|--|--|
 |sys.net.netfilter.*|支持|不支持|
-|sys.net.tcpip.confailures|不支持|支持|
-|sys.net.tcpip.confailures|不支持|支持|
-|sys.net.tcpip.conpassive|不支持|支持|
-|sys.net.tcpip.conestablished|不支持|支持|
-|sys.net.tcpip.conreset|不支持|支持|
+|sys.net.tcp.ip4.confailures|不支持|支持|
+|sys.net.tcp.ip4.confailures|不支持|支持|
+|sys.net.tcp.ip4.conpassive|不支持|支持|
+|sys.net.tcp.ip4.conestablished|不支持|支持|
+|sys.net.tcp.ip4.conreset|不支持|支持|
 |sys.ps.entity.total|支持|不支持|
 
 #### port 
