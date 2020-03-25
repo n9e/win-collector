@@ -1,0 +1,25 @@
+logger:
+  dir: logs/collector
+  level: DEBUG
+  keepHours: 2
+identity:
+  specify: ""
+sys:
+  # timeout in ms
+  # interval in second
+  timeout: 1000
+  interval: 20
+  ifacePrefix:
+    - 以太网
+    - 本地连接
+  mountPoint: []
+  mountIgnorePrefix:
+    - /var/lib
+  ntpServers:
+    - ntp.aliyun.com
+  ignoreMetrics:
+    - cpu.core.idle
+    - cpu.core.util
+    - cpu.core.sys
+    - cpu.core.user
+    - cpu.core.irq

@@ -1,0 +1,16 @@
+---
+monapi:
+  http: 0.0.0.0:5800
+  addresses:
+    - 192.168.0.100
+
+transfer:
+  http: 0.0.0.0:5810
+  rpc: 0.0.0.0:5811
+  addresses:
+    - 192.168.0.100
+
+collector:
+  http: 0.0.0.0:2058
+
+
