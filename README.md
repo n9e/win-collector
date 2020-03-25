@@ -43,7 +43,7 @@
 |disk.io.read.msec|不支持|支持|
 |disk.io.write.msec|不支持|支持|
 |disk.rw.error|支持|不支持|
-|
+
 
 #### net
 |metric|linux|windows|
