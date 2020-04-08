@@ -8,7 +8,7 @@ import (
 	"github.com/toolkits/pkg/logger"
 	"github.com/toolkits/pkg/net/httplib"
 
-	"github/n9e/win-collector/sys/identity"
+	"github.com/n9e/win-collector/sys/identity"
 
 	"github.com/didi/nightingale/src/model"
 	"github.com/didi/nightingale/src/toolkits/address"

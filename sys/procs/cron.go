@@ -3,7 +3,7 @@ package procs
 import (
 	"time"
 
-	"github/n9e/win-collector/stra"
+	"github.com/n9e/win-collector/stra"
 )
 
 func Detect() {

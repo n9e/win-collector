@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github/n9e/win-collector/sys"
+	"github.com/n9e/win-collector/sys"
 
 	"github.com/didi/nightingale/src/dataobj"
 	"github.com/shirou/gopsutil/disk"

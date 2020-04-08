@@ -2,9 +2,10 @@ package funcs
 
 import (
 	"fmt"
-	"github/n9e/win-collector/sys"
 	"strings"
 	"time"
+
+	"github.com/n9e/win-collector/sys"
 
 	"github.com/StackExchange/wmi"
 	"github.com/didi/nightingale/src/dataobj"

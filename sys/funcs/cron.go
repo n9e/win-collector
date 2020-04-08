@@ -3,9 +3,9 @@ package funcs
 import (
 	"time"
 
-	"github/n9e/win-collector/sys/identity"
+	"github.com/n9e/win-collector/sys/identity"
 
-	"github/n9e/win-collector/sys"
+	"github.com/n9e/win-collector/sys"
 
 	"github.com/didi/nightingale/src/dataobj"
 

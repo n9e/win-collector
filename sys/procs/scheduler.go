@@ -7,8 +7,8 @@ import (
 	"github.com/shirou/gopsutil/process"
 	"github.com/toolkits/pkg/logger"
 
-	"github/n9e/win-collector/sys/funcs"
-	"github/n9e/win-collector/sys/identity"
+	"github.com/n9e/win-collector/sys/funcs"
+	"github.com/n9e/win-collector/sys/identity"
 
 	"github.com/didi/nightingale/src/dataobj"
 	"github.com/didi/nightingale/src/model"

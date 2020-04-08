@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"sync"
 
-	"github/n9e/win-collector/stra"
-	"github/n9e/win-collector/sys"
-	"github/n9e/win-collector/sys/identity"
+	"github.com/n9e/win-collector/stra"
+	"github.com/n9e/win-collector/sys"
+	"github.com/n9e/win-collector/sys/identity"
 
 	"github.com/didi/nightingale/src/toolkits/logger"
 	"github.com/spf13/viper"

@@ -8,16 +8,16 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github/n9e/win-collector/sys/identity"
+	"github.com/n9e/win-collector/sys/identity"
 
-	"github/n9e/win-collector/config"
+	"github.com/n9e/win-collector/config"
 
-	"github/n9e/win-collector/http/routes"
-	"github/n9e/win-collector/stra"
-	"github/n9e/win-collector/sys"
-	"github/n9e/win-collector/sys/funcs"
-	"github/n9e/win-collector/sys/ports"
-	"github/n9e/win-collector/sys/procs"
+	"github.com/n9e/win-collector/http/routes"
+	"github.com/n9e/win-collector/stra"
+	"github.com/n9e/win-collector/sys"
+	"github.com/n9e/win-collector/sys/funcs"
+	"github.com/n9e/win-collector/sys/ports"
+	"github.com/n9e/win-collector/sys/procs"
 
 	"github.com/didi/nightingale/src/toolkits/http"
 	tlogger "github.com/didi/nightingale/src/toolkits/logger"
