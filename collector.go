@@ -65,9 +65,9 @@ func main() {
 	sys.Init(cfg.Sys)
 	stra.Init(cfg.Stra)
 
+	funcs.InitRpcClients()
 	funcs.BuildMappers()
 	funcs.Collect()
-	funcs.InitRpcClients()
 
 	//进程采集
 	procs.Detect()
