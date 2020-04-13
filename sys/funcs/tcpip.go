@@ -38,13 +38,13 @@ func TcpipMetrics() (L []*dataobj.MetricValue) {
 	if v < 0 {
 		v = 0
 	}
-	L = append(L, CounterValue("sys.net.tcp.ip4.con.passive", v))
+	L = append(L, GaugeValue("sys.net.tcp.ip4.con.passive", v))
 
 	v = float64(newTcpipStat.ConnectionsReset-historyTcpipStat.ConnectionsReset) / float64(interval)
 	if v < 0 {
 		v = 0
 	}
-	L = append(L, CounterValue("sys.net.tcp.ip4.con.reset", v))
+	L = append(L, GaugeValue("sys.net.tcp.ip4.con.reset", v))
 
 	v = float64(newTcpipStat.ConnectionsActive-historyTcpipStat.ConnectionsActive) / float64(interval)
 	if v < 0 {

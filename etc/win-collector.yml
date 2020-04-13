@@ -1,6 +1,6 @@
 logger:
   dir: logs/collector
-  level: DEBUG
+  level: WARNING
   keepHours: 2
 identity:
   specify: ""

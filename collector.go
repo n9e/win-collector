@@ -8,9 +8,9 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/n9e/win-collector/sys/identity"
-
+	"github.com/n9e/win-collector/cache"
 	"github.com/n9e/win-collector/config"
+	"github.com/n9e/win-collector/sys/identity"
 
 	"github.com/n9e/win-collector/http/routes"
 	"github.com/n9e/win-collector/stra"
@@ -67,13 +67,16 @@ func main() {
 
 	funcs.BuildMappers()
 	funcs.Collect()
-	stra.GetCollects()
+	funcs.InitRpcClients()
 
 	//进程采集
 	procs.Detect()
 
 	//端口采集
 	ports.Detect()
+
+	//初始化缓存，用作保存COUNTER类型数据
+	cache.Init()
 
 	r := gin.New()
 	routes.Config(r)
