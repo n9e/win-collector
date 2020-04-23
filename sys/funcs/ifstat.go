@@ -18,7 +18,9 @@ func netIoCountersStat(ifacePrefix []string) ([]net.IOCountersStat, error) {
 	netIfs := []net.IOCountersStat{}
 	for _, iface := range ifacePrefix {
 		for _, netIf := range netIOCounter {
+			logger.Debug("discover netif names: ", netIf.Name)
 			if strings.Contains(netIf.Name, iface) {
+				logger.Debug("match netif names: ", netIf.Name)
 				netIfs = append(netIfs, netIf)
 			}
 		}
@@ -88,12 +90,13 @@ func netMetrics(ifacePrefix []string) (ret []*dataobj.MetricValue) {
 		if err != nil || len(networkAdapter) == 0 {
 			logger.Error("get network adapter speed failed: ", netIf.Name, err)
 		} else {
+			if !networkAdapter[0].NetEnabled {
+				logger.Debug("network adapter is not enbaled, ignore: ", netIf.Name)
+				continue
+			}
 			ifstat.speed = networkAdapter[0].Speed
 		}
-		if !networkAdapter[0].NetEnabled {
-			logger.Debug("network adapter is not enbaled, ignore: ", netIf.Name)
-			continue
-		}
+
 		newIfStat[netIf.Name] = ifstat
 	}
 	interval := now.Unix() - lastTime.Unix()
