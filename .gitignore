@@ -1,4 +1,5 @@
 *.exe
 logs
+etc/*.local.yml
 *.zip
 nssm/

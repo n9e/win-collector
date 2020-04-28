@@ -16,6 +16,7 @@ import (
 	"github.com/n9e/win-collector/stra"
 	"github.com/n9e/win-collector/sys"
 	"github.com/n9e/win-collector/sys/funcs"
+	"github.com/n9e/win-collector/sys/plugins"
 	"github.com/n9e/win-collector/sys/ports"
 	"github.com/n9e/win-collector/sys/procs"
 
@@ -68,6 +69,9 @@ func main() {
 	funcs.InitRpcClients()
 	funcs.BuildMappers()
 	funcs.Collect()
+
+	//插件采集
+	plugins.Detect()
 
 	//进程采集
 	procs.Detect()

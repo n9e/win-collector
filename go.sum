@@ -33,6 +33,8 @@ github.com/dgryski/go-sip13 v0.0.0-20181026042036-e10d5fee7954/go.mod h1:vAd38F8
 github.com/dgryski/go-tsz v0.0.0-20180227144327-03b7d791f4fe/go.mod h1:ft6P746mYUFQBCsH3OkFBG8FtjLx1XclLMo+9Jh1Yts=
 github.com/didi/nightingale v1.2.0 h1:A6kIit7DXf+veP3+DH2JMbRnpW+jvwRDfcteAZFFFPs=
 github.com/didi/nightingale v1.2.0/go.mod h1:q506Wxcd45NQv5zvEIDVzaJLpr5bCJDSC0oJWXGV8WQ=
+github.com/didi/nightingale v1.3.3 h1:0ys4hthVoSQq5ZwjTizLr1AvJkiy1b7SWmDVTTKjO3c=
+github.com/didi/nightingale v1.3.3/go.mod h1:bsMtKmxYXDX3RbYeXP4QVTSo9QVBHFcisDez2fjdfOw=
 github.com/eapache/go-resiliency v1.1.0/go.mod h1:kFI+JgMyC7bLPUVY133qvEBtVayf5mFgVsvEsIPBvNs=
 github.com/eapache/go-xerial-snappy v0.0.0-20180814174437-776d5712da21/go.mod h1:+020luEh2TKB4/GOp8oxxtq0Daoen/Cii55CzbTV6DU=
 github.com/eapache/queue v1.1.0/go.mod h1:6eCeP0CKFpHLu8blIFXhExK/dRa7WDZfr6jVFPTqq+I=
