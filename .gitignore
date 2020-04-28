@@ -1,5 +1,6 @@
 *.exe
 logs
+*.local.yml
 etc/*.local.yml
 *.zip
 nssm/

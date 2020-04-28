@@ -17,6 +17,7 @@ sys:
     - /var/lib
   ntpServers:
     - ntp.aliyun.com
+  plugin: plugin/
   ignoreMetrics:
     - cpu.core.idle
     - cpu.core.util

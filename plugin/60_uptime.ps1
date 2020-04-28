@@ -1,6 +1,11 @@
 # get localIP
 $ips = foreach($ipv4 in (ipconfig) -like '*IPv4*') { ($ipv4 -split ' : ')[-1]}
-$localIP = $ips[0]
+if ($ips -is [array]){
+	$localIP = $ips[0]
+}else{
+	$localIP = $ips
+}
+
 
 # get timestamp
 $ts = [int64](Get-Date(Get-Date).ToUniversalTime() -UFormat "%s")
