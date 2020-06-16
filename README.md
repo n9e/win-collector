@@ -76,7 +76,7 @@
 
 
 ## 运行
-管理员权限直接运行 `win-collector.exe` 即可。配置文件在 `etc/address.yml` 和 `etc/win-collector.yml` 内
+管理员权限直接运行 `win-collector.exe` ([下载win-collector](https://github.com/n9e/win-collector/releases)) 即可。配置文件在 `etc/address.yml` 和 `etc/win-collector.yml` 内
 
 ## 注册为服务
 可以使用 [nssm](https://nssm.cc/) 将其注册为服务
