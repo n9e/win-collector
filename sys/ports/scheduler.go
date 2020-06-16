@@ -5,11 +5,11 @@ import (
 	"net"
 	"time"
 
-	"github.com/n9e/win-collector/sys/funcs"
-	"github.com/n9e/win-collector/sys/identity"
-
 	"github.com/didi/nightingale/src/dataobj"
 	"github.com/didi/nightingale/src/model"
+	"github.com/n9e/win-collector/sys/funcs"
+	"github.com/n9e/win-collector/sys/identity"
+	"github.com/toolkits/pkg/logger"
 )
 
 type PortScheduler struct {
@@ -60,9 +60,17 @@ func isListening(port int, timeout int) bool {
 	if isListen(port, timeout, "127.0.0.1") {
 		return true
 	}
-	if isListen(port, timeout, identity.Identity) {
-		return true
+	ips, err := identity.MyIp4List()
+	if err != nil {
+		logger.Error(err)
+		return false
 	}
+	for _, ip := range ips {
+		if isListen(port, timeout, ip) {
+			return true
+		}
+	}
+
 	return false
 }
 

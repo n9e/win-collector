@@ -14,7 +14,7 @@ type IdentitySection struct {
 	Shell   string `yaml:"shell"`
 }
 
-func myIp4List() ([]string, error) {
+func MyIp4List() ([]string, error) {
 	ips := []string{}
 	addrs, err := net.InterfaceAddrs()
 	if err != nil {
@@ -36,7 +36,7 @@ func Init(identity IdentitySection) {
 		Identity = identity.Specify
 		return
 	}
-	ips, err := myIp4List()
+	ips, err := MyIp4List()
 	if err != nil {
 		log.Fatalln("cannot get identity: ", err)
 	}
