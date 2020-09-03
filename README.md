@@ -161,8 +161,40 @@ collector start, use configuration file: D:\win-collector-win64-0.2.1\etc\win-co
 ```
 表示启动正常，再检查服务端是否上报
 
-## 运行
-管理员权限直接运行 `win-collector.exe` ([下载win-collector](https://github.com/n9e/win-collector/releases)) 即可。配置文件在 `etc/address.yml` 和 `etc/win-collector.yml` 内
+## 正式运行
 
-## 注册为服务
-可以使用 [nssm](https://nssm.cc/) 将其注册为服务
+```
+cmd定位至nssm.exe所在目录，输入 nssm install win-collector，即注册服务的名称。注册服务弹出如下NSSM界面。
+Application标签设置：
+Application Path: 选择wind-collecotr安装的exe,如D:\win-collector-win64-0.2.1\win-collector.exe
+Startup directory: 选择exe项目的根目录,D:\win-collector-win64-0.2.1\
+Arguments: 输入启动参数,-f D:\win-collector-win64-0.2.1\etc\win-collector.yml
+上述步骤操作完成，即可点击Install service来注册服务。我们在系统的服务中即可找到刚刚注册的服务。
+在系统服务中找到刚刚注册的服务，右键属性 - 恢复即可设置此服务挂掉重启等内容。
+其它界面的是高级参数的配置，可以根据需要自行选择。
+
+参数填完后执行"install service"按钮即可将服务安装到系统，可以使用系统的服务管理工具查看了。
+当然，如果要自动化安装，可以直接带上程序路径： nssm install <servicename> <program> [<arguments>]
+NSSM本身win7及以上的系统基本都是支持的，我测试过win7，2008,2016系统，都是没有问题的，如果安装失败，请首先检查是否装了某国产管家或国产杀毒软件。
+安装完成后，服务还没有启动，需要通过下面的服务管理的命令启动服务。
+
+服务管理
+服务管理主要有启动、停止和重启，其命令如下：
+
+启动服务：nssm start <servicename>
+停止服务： nssm stop <servicename>
+重启服务: nssm restart <servicename>
+当然，也可以使用系统自带的服务管理器操作和使用系统的命令。
+
+修改参数
+NSSM安装的服务修改起来非常方便，命令如下：
+nssm edit <servicename>
+会自动启动操作界面，直接更改即可。
+
+服务删除
+服务删除可以使用如下命令之一：
+
+nssm remove <servicename>
+nssm remove <servicename> confirm
+功能没有大的区别，后面的命令是自动确认的，没有交互界面。
+```
