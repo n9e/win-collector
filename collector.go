@@ -27,6 +27,8 @@ import (
 	"github.com/toolkits/pkg/file"
 	"github.com/toolkits/pkg/logger"
 	"github.com/toolkits/pkg/runner"
+	"github.com/StackExchange/wmi"
+
 )
 
 var (
@@ -62,6 +64,8 @@ func main() {
 
 	identity.Init(cfg.Identity)
 	log.Println("endpoint:", identity.Identity)
+
+	initWbem()
 
 	sys.Init(cfg.Sys)
 	stra.Init(cfg.Stra)
@@ -133,4 +137,18 @@ func start() {
 	runner.Init()
 	fmt.Println("collector start, use configuration file:", *conf)
 	fmt.Println("runner.cwd:", runner.Cwd)
+}
+
+func initWbem() {
+	// This initialization prevents a memory leak on WMF 5+. See
+	// https://github.com/prometheus-community/windows_exporter/issues/77 and
+	// linked issues for details.
+	logger.Debug("Initializing SWbemServices")
+
+	s, err := wmi.InitializeSWbemServices(wmi.DefaultClient)
+	if err != nil {
+		log.Fatal(err)
+	}
+	wmi.DefaultClient.AllowMissingFields = true
+	wmi.DefaultClient.SWbemServicesClient = s
 }
