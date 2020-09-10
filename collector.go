@@ -143,6 +143,7 @@ func initWbem() {
 	// This initialization prevents a memory leak on WMF 5+. See
 	// https://github.com/prometheus-community/windows_exporter/issues/77 and
 	// linked issues for details.
+	// thanks prometheus windows exporter community for this issues. by yimeng
 	logger.Debug("Initializing SWbemServices")
 
 	s, err := wmi.InitializeSWbemServices(wmi.DefaultClient)
