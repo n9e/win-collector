@@ -23,12 +23,11 @@ import (
 	"github.com/didi/nightingale/src/toolkits/http"
 	tlogger "github.com/didi/nightingale/src/toolkits/logger"
 
+	"github.com/StackExchange/wmi"
 	"github.com/gin-gonic/gin"
 	"github.com/toolkits/pkg/file"
 	"github.com/toolkits/pkg/logger"
 	"github.com/toolkits/pkg/runner"
-	"github.com/StackExchange/wmi"
-
 )
 
 var (
@@ -58,14 +57,15 @@ func main() {
 	aconf()
 	pconf()
 	start()
+
+	initWbem()
+
 	cfg := config.Get()
 
 	tlogger.Init(cfg.Logger)
 
 	identity.Init(cfg.Identity)
 	log.Println("endpoint:", identity.Identity)
-
-	initWbem()
 
 	sys.Init(cfg.Sys)
 	stra.Init(cfg.Stra)
