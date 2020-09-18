@@ -23,6 +23,7 @@ import (
 	"github.com/didi/nightingale/src/toolkits/http"
 	tlogger "github.com/didi/nightingale/src/toolkits/logger"
 
+	"github.com/StackExchange/wmi"
 	"github.com/gin-gonic/gin"
 	"github.com/toolkits/pkg/file"
 	"github.com/toolkits/pkg/logger"
@@ -56,6 +57,9 @@ func main() {
 	aconf()
 	pconf()
 	start()
+
+	initWbem()
+
 	cfg := config.Get()
 
 	tlogger.Init(cfg.Logger)
@@ -133,4 +137,19 @@ func start() {
 	runner.Init()
 	fmt.Println("collector start, use configuration file:", *conf)
 	fmt.Println("runner.cwd:", runner.Cwd)
+}
+
+func initWbem() {
+	// This initialization prevents a memory leak on WMF 5+. See
+	// https://github.com/prometheus-community/windows_exporter/issues/77 and
+	// linked issues for details.
+	// thanks prometheus windows exporter community for this issues. by yimeng
+	logger.Debug("Initializing SWbemServices")
+
+	s, err := wmi.InitializeSWbemServices(wmi.DefaultClient)
+	if err != nil {
+		log.Fatal(err)
+	}
+	wmi.DefaultClient.AllowMissingFields = true
+	wmi.DefaultClient.SWbemServicesClient = s
 }
