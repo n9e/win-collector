@@ -9,6 +9,9 @@ identity:
 ip:
   specify: ""
 
+enable:
+  report: true
+
 stra:
   api: /api/mon/collects/ # n9e v3 使用这个地址，n9e v2 可以不配 stra 部分，或者配 /api/portal/collects/
 
