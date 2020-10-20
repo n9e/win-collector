@@ -4,7 +4,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/didi/nightingale/src/dataobj"
+	"github.com/didi/nightingale/src/common/dataobj"
 )
 
 var MetricHistory *History

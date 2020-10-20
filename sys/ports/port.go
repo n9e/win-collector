@@ -1,7 +1,7 @@
 package ports
 
 import (
-	"github.com/didi/nightingale/src/model"
+	model "github.com/didi/nightingale/src/models"
 )
 
 var (

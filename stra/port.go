@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/didi/nightingale/src/model"
+	model "github.com/didi/nightingale/src/models"
 	"github.com/didi/nightingale/src/toolkits/str"
 
 	"github.com/toolkits/pkg/file"

@@ -2,8 +2,38 @@ logger:
   dir: logs/collector
   level: WARNING
   keepHours: 2
+
 identity:
   specify: ""
+
+ip:
+  specify: ""
+
+stra:
+  api: /api/mon/collects/ # n9e v3 使用这个地址，n9e v2 可以不配 stra 部分，或者配 /api/portal/collects/
+
+report:
+  # 调用ams的接口上报数据，需要ams的token
+  token: ams-builtin-token
+
+  # 上报周期，单位是秒
+  interval: 10
+
+  # physical：物理机，virtual：虚拟机，container：容器，switch：交换机
+  cate: physical
+
+  # 使用哪个字段作为唯一KEY，即作为where条件更新对应记录，一般使用sn或ip
+  uniqkey: ip
+
+  # 如果是虚拟机，应该是获取uuid
+  # curl -s http://169.254.169.254/a/meta-data/instance-id
+  sn: (Get-WmiObject -ComputerName $env:ComputerName -Class Win32_BIOS).SerialNumber
+
+  fields:
+    cpu: (Get-WmiObject -class Win32_ComputerSystem).numberoflogicalprocessors
+    mem: Write-Host $('{0:f2}' -f ((Get-WmiObject -class "cim_physicalmemory" | Measure-Object -Property Capacity -Sum).Sum/(1024*1024*1024)))Gi
+    disk: Write-Host $('{0:f2}' -f ((Get-WmiObject Win32_LogicalDisk -ComputerName $env:ComputerName -Filter "DeviceID='C:'" | Select-Object Size).Size/(1024*1024*1024)))Gi
+
 sys:
   # timeout in ms
   # interval in second

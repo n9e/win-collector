@@ -1,6 +1,6 @@
 package stra
 
-import "github.com/didi/nightingale/src/model"
+import model "github.com/didi/nightingale/src/models"
 
 var StraConfig StraSection
 var Collect model.Collect

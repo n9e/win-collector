@@ -7,7 +7,7 @@ import (
 	"github.com/n9e/win-collector/stra"
 	"github.com/n9e/win-collector/sys/funcs"
 
-	"github.com/didi/nightingale/src/dataobj"
+	"github.com/didi/nightingale/src/common/dataobj"
 	"github.com/didi/nightingale/src/toolkits/http/render"
 
 	"github.com/gin-gonic/gin"

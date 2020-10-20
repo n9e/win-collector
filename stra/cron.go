@@ -10,8 +10,8 @@ import (
 
 	"github.com/n9e/win-collector/sys/identity"
 
-	"github.com/didi/nightingale/src/model"
-	"github.com/didi/nightingale/src/toolkits/address"
+	"github.com/didi/nightingale/src/common/address"
+	model "github.com/didi/nightingale/src/models"
 )
 
 func GetCollects() {
@@ -72,7 +72,7 @@ func getCollects() (CollectResp, error) {
 	var res CollectResp
 	var err error
 
-	url := fmt.Sprintf("http://%s%s%s", addr, StraConfig.Api, identity.Identity)
+	url := fmt.Sprintf("http://%s%s%s", addr, StraConfig.Api, identity.GetIdent())
 	err = httplib.Get(url).SetTimeout(time.Duration(StraConfig.Timeout) * time.Millisecond).ToJSON(&res)
 	if err != nil {
 		err = fmt.Errorf("get collects from remote:%s failed, error:%v", url, err)

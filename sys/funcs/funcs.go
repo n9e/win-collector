@@ -3,7 +3,7 @@ package funcs
 import (
 	"github.com/n9e/win-collector/sys"
 
-	"github.com/didi/nightingale/src/dataobj"
+	"github.com/didi/nightingale/src/common/dataobj"
 )
 
 type FuncsAndInterval struct {

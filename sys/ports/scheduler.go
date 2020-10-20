@@ -5,8 +5,8 @@ import (
 	"net"
 	"time"
 
-	"github.com/didi/nightingale/src/dataobj"
-	"github.com/didi/nightingale/src/model"
+	"github.com/didi/nightingale/src/common/dataobj"
+	model "github.com/didi/nightingale/src/models"
 	"github.com/n9e/win-collector/sys/funcs"
 	"github.com/n9e/win-collector/sys/identity"
 	"github.com/toolkits/pkg/logger"
@@ -52,7 +52,7 @@ func PortCollect(p *model.PortCollect) {
 	item := funcs.GaugeValue("proc.port.listen", value, p.Tags)
 	item.Step = int64(p.Step)
 	item.Timestamp = time.Now().Unix()
-	item.Endpoint = identity.Identity
+	item.Endpoint = identity.GetIdent()
 	funcs.Push([]*dataobj.MetricValue{item})
 }
 

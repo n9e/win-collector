@@ -1,17 +1,25 @@
 package identity
 
 import (
+	"errors"
 	"log"
+
 	"net"
 )
 
-var (
-	Identity string
-)
+type Identity struct {
+	IP    string `yaml:"ip"`
+	Ident string `yaml:"ident"`
+}
+
+var config Identity
 
 type IdentitySection struct {
 	Specify string `yaml:"specify"`
-	Shell   string `yaml:"shell"`
+}
+
+type IPSection struct {
+	Specify string `yaml:"specify"`
 }
 
 func MyIp4List() ([]string, error) {
@@ -31,18 +39,58 @@ func MyIp4List() ([]string, error) {
 	return ips, nil
 }
 
-func Init(identity IdentitySection) {
-	if identity.Specify != "" {
-		Identity = identity.Specify
-		return
-	}
+func getMyIP() (ip string, err error) {
 	ips, err := MyIp4List()
 	if err != nil {
-		log.Fatalln("cannot get identity: ", err)
+		return
 	}
 	if len(ips) == 0 {
-		log.Fatalln("cannot get identity, no global unicast ip can found ")
+		err = errors.New("cannot get identity, no global unicast ip can found")
+		return
 	}
-	Identity = ips[0]
+	ip = ips[0]
 	return
+}
+
+func getIdent(identity IdentitySection) (string, error) {
+	if identity.Specify != "" {
+		return identity.Specify, nil
+	}
+	myip, err := getMyIP()
+	if err != nil {
+		return "", nil
+	}
+	return myip, nil
+}
+
+func getIP(ip IPSection) (string, error) {
+	if ip.Specify != "" {
+		return ip.Specify, nil
+	}
+	myip, err := getMyIP()
+	if err != nil {
+		return "", nil
+	}
+	return myip, nil
+}
+
+func Init(identity IdentitySection, ip IPSection) {
+	ident, err := getIdent(identity)
+	if err != nil {
+		log.Fatalf("init identity failed, %v", err)
+	}
+	myip, err := getIP(ip)
+	if err != nil {
+		log.Fatalf("init ip failed, %v", err)
+	}
+	config.Ident = ident
+	config.IP = myip
+	return
+}
+
+func GetIP() string {
+	return config.IP
+}
+func GetIdent() string {
+	return config.Ident
 }

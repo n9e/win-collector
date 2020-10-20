@@ -9,16 +9,32 @@ import (
 	"github.com/n9e/win-collector/sys"
 	"github.com/n9e/win-collector/sys/identity"
 
-	"github.com/didi/nightingale/src/toolkits/logger"
+	logger "github.com/didi/nightingale/src/common/loggeri"
 	"github.com/spf13/viper"
 	"github.com/toolkits/pkg/file"
 )
 
 type ConfYaml struct {
+	Logger   logger.Config            `yaml:"logger"`
 	Identity identity.IdentitySection `yaml:"identity"`
-	Logger   logger.LoggerSection     `yaml:"logger"`
+	IP       identity.IPSection       `yaml:"ip"`
 	Stra     stra.StraSection         `yaml:"stra"`
+	Enable   enableSection            `yaml:"enable"`
+	Report   reportSection            `yaml:"report"`
 	Sys      sys.SysSection           `yaml:"sys"`
+}
+
+type enableSection struct {
+	Report bool `yaml:"report"`
+}
+
+type reportSection struct {
+	Token    string            `yaml:"token"`
+	Interval int               `yaml:"interval"`
+	Cate     string            `yaml:"cate"`
+	UniqKey  string            `yaml:"uniqkey"`
+	SN       string            `yaml:"sn"`
+	Fields   map[string]string `yaml:"fields"`
 }
 
 var (

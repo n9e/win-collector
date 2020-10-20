@@ -10,8 +10,8 @@ import (
 	"github.com/n9e/win-collector/sys/funcs"
 	"github.com/n9e/win-collector/sys/identity"
 
-	"github.com/didi/nightingale/src/dataobj"
-	"github.com/didi/nightingale/src/model"
+	"github.com/didi/nightingale/src/common/dataobj"
+	model "github.com/didi/nightingale/src/models"
 )
 
 type ProcScheduler struct {
@@ -72,7 +72,7 @@ func ProcCollect(p *model.ProcCollect) {
 	item := funcs.GaugeValue("proc.num", cnt, p.Tags)
 	item.Step = int64(p.Step)
 	item.Timestamp = time.Now().Unix()
-	item.Endpoint = identity.Identity
+	item.Endpoint = identity.GetIdent()
 
 	funcs.Push([]*dataobj.MetricValue{item})
 }

@@ -10,7 +10,11 @@ transfer:
   addresses:
     - 192.168.0.100
 
+ams:
+  http: 0.0.0.0:8002
+  addresses:
+    - 192.168.0.100
+
 collector:
   http: 0.0.0.0:2058
-
 

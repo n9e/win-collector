@@ -13,6 +13,7 @@ import (
 	"github.com/n9e/win-collector/sys/identity"
 
 	"github.com/n9e/win-collector/http/routes"
+	"github.com/n9e/win-collector/report"
 	"github.com/n9e/win-collector/stra"
 	"github.com/n9e/win-collector/sys"
 	"github.com/n9e/win-collector/sys/funcs"
@@ -20,8 +21,8 @@ import (
 	"github.com/n9e/win-collector/sys/ports"
 	"github.com/n9e/win-collector/sys/procs"
 
+	tlogger "github.com/didi/nightingale/src/common/loggeri"
 	"github.com/didi/nightingale/src/toolkits/http"
-	tlogger "github.com/didi/nightingale/src/toolkits/logger"
 
 	"github.com/StackExchange/wmi"
 	"github.com/gin-gonic/gin"
@@ -64,8 +65,8 @@ func main() {
 
 	tlogger.Init(cfg.Logger)
 
-	identity.Init(cfg.Identity)
-	log.Println("endpoint:", identity.Identity)
+	identity.Init(cfg.Identity, cfg.IP)
+	log.Println("endpoint & ip:", identity.GetIdent(), identity.GetIP())
 
 	sys.Init(cfg.Sys)
 	stra.Init(cfg.Stra)
@@ -85,6 +86,9 @@ func main() {
 
 	//初始化缓存，用作保存COUNTER类型数据
 	cache.Init()
+	if cfg.Enable.Report {
+		reportStart()
+	}
 
 	r := gin.New()
 	routes.Config(r)
@@ -137,6 +141,15 @@ func start() {
 	runner.Init()
 	fmt.Println("collector start, use configuration file:", *conf)
 	fmt.Println("runner.cwd:", runner.Cwd)
+}
+
+func reportStart() {
+	if err := report.GatherBase(); err != nil {
+		fmt.Println("gatherBase fail: ", err)
+		os.Exit(1)
+	}
+
+	go report.LoopReport()
 }
 
 func initWbem() {

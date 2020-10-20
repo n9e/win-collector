@@ -11,7 +11,7 @@ import (
 	"github.com/toolkits/pkg/file"
 	"github.com/toolkits/pkg/logger"
 
-	"github.com/didi/nightingale/src/dataobj"
+	"github.com/didi/nightingale/src/common/dataobj"
 	"github.com/n9e/win-collector/sys/funcs"
 )
 

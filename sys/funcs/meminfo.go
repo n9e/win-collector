@@ -1,7 +1,7 @@
 package funcs
 
 import (
-	"github.com/didi/nightingale/src/dataobj"
+	"github.com/didi/nightingale/src/common/dataobj"
 	"github.com/shirou/gopsutil/mem"
 	"github.com/toolkits/pkg/logger"
 )

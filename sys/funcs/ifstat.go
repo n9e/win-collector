@@ -8,7 +8,7 @@ import (
 	"github.com/n9e/win-collector/sys"
 
 	"github.com/StackExchange/wmi"
-	"github.com/didi/nightingale/src/dataobj"
+	"github.com/didi/nightingale/src/common/dataobj"
 	"github.com/shirou/gopsutil/net"
 	"github.com/toolkits/pkg/logger"
 )

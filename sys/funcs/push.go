@@ -14,20 +14,21 @@ import (
 	"github.com/toolkits/pkg/logger"
 	"github.com/ugorji/go/codec"
 
-	"github.com/didi/nightingale/src/dataobj"
-	"github.com/didi/nightingale/src/toolkits/address"
+	"github.com/didi/nightingale/src/common/address"
+	"github.com/didi/nightingale/src/common/dataobj"
 	"github.com/n9e/win-collector/sys/identity"
 )
 
 func Push(metricItems []*dataobj.MetricValue) error {
 	var err error
 	var items []*dataobj.MetricValue
+	now := time.Now().Unix()
 	for _, item := range metricItems {
 		logger.Debug("->recv: ", item)
 		if item.Endpoint == "" {
-			item.Endpoint = identity.Identity
+			item.Endpoint = identity.GetIdent()
 		}
-		err = item.CheckValidity()
+		err = item.CheckValidity(now)
 		if err != nil {
 			msg := fmt.Errorf("metric:%v err:%v", item, err)
 			logger.Warning(msg)
