@@ -8,6 +8,7 @@ import (
 	"os"
 	"os/exec"
 	"sort"
+	"strings"
 	"time"
 
 	"github.com/toolkits/pkg/file"
@@ -132,6 +133,12 @@ func report() error {
 }
 
 func execPowershell(shell string) (string, error) {
+	//如果一个空格都没有，基本上不太可能是一个shell，原值直接返回
+	//这样可以支持没有powershell的环境
+	//Linux不可能没有shell，win还真有卸载掉powershell的。。。
+	if !strings.Contains(shell, " ") {
+		return shell, nil
+	}
 	cmd := exec.Command("powershell.exe", shell)
 	out, err := cmd.Output()
 	if err != nil {

@@ -21,7 +21,7 @@ func TcpipMetrics() (L []*dataobj.MetricValue) {
 	}
 	newTcpipStat := &tcpipStat[0]
 	now := time.Now()
-	interval := now.Unix() - lastTime.Unix()
+	interval := now.Unix() - lasttcpipTime.Unix()
 	lasttcpipTime = now
 
 	if historyTcpipStat == nil {
