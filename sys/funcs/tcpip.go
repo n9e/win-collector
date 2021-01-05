@@ -47,6 +47,7 @@ func TcpipMetrics() (L []*dataobj.MetricValue) {
 	L = append(L, GaugeValue("sys.net.tcp.ip4.con.reset", v))
 
 	v = float64(newTcpipStat.ConnectionsActive-historyTcpipStat.ConnectionsActive) / float64(interval)
+	logger.Debugf("row connection active,new value is %v, history value is %v,interval is %v", newTcpipStat.ConnectionsActive, historyTcpipStat.ConnectionsActive, interval)
 	if v < 0 {
 		v = 0
 	}
@@ -55,6 +56,7 @@ func TcpipMetrics() (L []*dataobj.MetricValue) {
 	v = float64(newTcpipStat.ConnectionsEstablished+historyTcpipStat.ConnectionsEstablished) / 2
 	L = append(L, GaugeValue("sys.net.tcp.ip4.con.established", v))
 
+	historyTcpipStat = newTcpipStat
 	return
 }
 
