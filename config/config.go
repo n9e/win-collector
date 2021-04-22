@@ -22,6 +22,7 @@ type ConfYaml struct {
 	Enable   enableSection            `yaml:"enable"`
 	Report   reportSection            `yaml:"report"`
 	Sys      sys.SysSection           `yaml:"sys"`
+	Server   serverSection            `yaml:"server"`
 }
 
 type enableSection struct {
@@ -35,6 +36,10 @@ type reportSection struct {
 	UniqKey  string            `yaml:"uniqkey"`
 	SN       string            `yaml:"sn"`
 	Fields   map[string]string `yaml:"fields"`
+}
+
+type serverSection struct {
+	RpcMethod string `yaml:"rpcMethod"`
 }
 
 var (
@@ -88,6 +93,8 @@ func Parse(conf string) error {
 		"interval": 10,   //基础指标上报周期
 		"plugin":   "/home/n9e/plugin",
 	})
+
+	viper.SetDefault("server.rpcMethod", "Transfer.Push")
 
 	err = viper.Unmarshal(&Config)
 	if err != nil {

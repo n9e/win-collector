@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/n9e/win-collector/cache"
+	"github.com/n9e/win-collector/config"
 	"github.com/toolkits/pkg/logger"
 	"github.com/ugorji/go/codec"
 
@@ -99,7 +100,7 @@ func rpcCall(addr string, items []*dataobj.MetricValue) (dataobj.TransferResp, e
 	done := make(chan error, 1)
 
 	go func() {
-		err := client.Call("Transfer.Push", items, &reply)
+		err := client.Call(config.Config.Server.RpcMethod, items, &reply)
 		done <- err
 	}()
 
