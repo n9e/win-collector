@@ -12,6 +12,7 @@ ip:
 enable:
   report: true
 
+# 在 n9e v4 中，这里要修改为 Server.Push
 # server:
 #   rpcMethod: "Transfer.Push"
 
